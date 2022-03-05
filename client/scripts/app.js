@@ -26,6 +26,17 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
+
+      //For rooms
+      for (let info in data) {
+        if (data[info].roomname === null) {
+          continue;
+        } else if (!Rooms._data.includes(data[info].roomname)) {
+          console.log(data[info].roomname);
+          Rooms._data.push(data[info].roomname);
+          console.log(Rooms._data);
+        }
+      }
       console.log(data);
 
       // TODO: Use the data to update Messages and Rooms
